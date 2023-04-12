@@ -28,6 +28,7 @@ class Train:
         for i in range(self.n_agents):
             actor_dims.append(self.env.observation_space[i].shape[0])
         critic_dims = sum(actor_dims)
+        print(actor_dims)
 
         self.n_actions = self.env.action_space[0].n
         self.maddpg_agents = MADDPG(actor_dims, critic_dims, self.n_agents, self.n_actions, 
