@@ -61,34 +61,22 @@
 #     obs, reward, done, info = env.step(actions)
 #     input("Press Enter to continue...")
 
+from pettingzoo.mpe import simple_adversary_v2
 
-# # import numpy as np
-# # print(np.random.choice(20,7,replace=False))
+env = simple_adversary_v2.env(render_mode="human", N=2, max_cycles=25, continuous_actions=True)
 
-# answer = False
-# while not answer:
-#     user_input = input("Max number of episodes reached, would you like to save the models? (y/n)")
-#     if user_input.lower() == 'y':
-#         print("yes")
-#         answer = True
-#     elif user_input.lower() == 'n':
-#         pass
-#         answer = True
-#     else:
-#         print("Invalid reply")
+env.reset()
 
-a = 0
-import time
+# print(env.agent_iter)
 
+# for agent in env.agent_iter():
+#     observation, reward, termination, truncation, info = env.last()
+#     print(agent)
+#     action = env.action_space(agent).sample()
+#     print(env.observation_space(agent))
+#     env.step(action)
+#     # env.render()
 
-while True:
-    try:
-        a = a+1
-    except KeyboardInterrupt:
-        user_input = input("do you want to print")
-        if user_input.lower()=="y":
-            print(a)
-        else:
-            print("")
-        time.sleep(1)
-        break
+print(env.observation_space(env.possible_agents[2]).shape)
+
+# print(env.observation_space[0])

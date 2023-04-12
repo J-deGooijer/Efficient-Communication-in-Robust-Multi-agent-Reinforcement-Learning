@@ -1,7 +1,7 @@
 import numpy as np
 from MADDPG.maddpg import MADDPG
 from MADDPG.buffer import MultiAgentReplayBuffer
-from make_env import make_env
+from pettingzoo.mpe import simple_adversary_v2
 import time
 
 class Train:
@@ -21,12 +21,13 @@ class Train:
         self.max_steps = max_steps
 
         scenario = 'simple_adversary'
-        self.env = make_env(scenario)
-        self.n_agents = self.env.n
+        self.env = simple_adversary_v2.env(N=2, max_cycles=self.max_steps, continuous_actions=True)
+        self.n_agents = 3
 
         actor_dims = []
         for i in range(self.n_agents):
-            actor_dims.append(self.env.observation_space[i].shape[0])
+            actor_dims.append(self.env.observation_space(self.env.possible_agents[i]).shape)
+        print(actor_dims)
         critic_dims = sum(actor_dims)
 
         self.n_actions = self.env.action_space[0].n
@@ -38,7 +39,7 @@ class Train:
         self.memory = MultiAgentReplayBuffer(1000000, critic_dims, actor_dims, 
                             self.n_actions, self.n_agents, batch_size=1024)
         
-        
+
     def loop(self):
         total_steps = 0
         score_history = []
