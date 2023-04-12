@@ -5,9 +5,9 @@ import time
 """
 Parameters MADDPG agents:
 """
-MODE = 'train' #pick "train" or "test"
+MODE = 'test' #pick "train" or "test"
 LOAD = True
-SAVE = True
+SAVE = False
 PRINT_INTERVAL = 500
 # N_GAMES = 10000
 # MAX_STEPS = 50

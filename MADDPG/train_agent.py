@@ -34,7 +34,7 @@ class Train:
         self.maddpg_agents = MADDPG(actor_dims, critic_dims, self.n_agents, self.n_actions, 
                             fc1=64, fc2=64,  
                             alpha=0.01, beta=0.01, scenario=scenario,
-                            chkpt_dir='tmp/maddpg/')
+                            chkpt_dir='MADDPG/tmp/maddpg/')
 
         self.memory = MultiAgentReplayBuffer(1000000, critic_dims, actor_dims, 
                             self.n_actions, self.n_agents, batch_size=1024)
