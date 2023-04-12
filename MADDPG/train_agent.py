@@ -26,10 +26,10 @@ class Train:
 
         actor_dims = []
         for i in range(self.n_agents):
-            actor_dims.append(self.env.observation_space(self.env.possible_agents[i]).shape)
-        print(actor_dims)
+            actor_dims.append(self.env.observation_space(self.env.possible_agents[i]).shape[0])
         critic_dims = sum(actor_dims)
 
+        print(self.env.action_space(self.env.possible_agents[0]))
         self.n_actions = self.env.action_space[0].n
         self.maddpg_agents = MADDPG(actor_dims, critic_dims, self.n_agents, self.n_actions, 
                             fc1=64, fc2=64,  
